@@ -3,9 +3,8 @@
 
 #include <sys/types.h> // For pid_t
 
-// Global variable to store the PID of the monitored service.
-// This variable is managed by the service_monitor module.
 extern pid_t monitored_service_pid;
+extern time_t server_start_time;
 
 // Function to start a new service as a child process and monitor its execution.
 // It uses a pipe to check if the execvp call in the child process was successful.

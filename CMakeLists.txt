@@ -26,6 +26,8 @@ add_executable(ThreadedAdminServer main.c
         base64.c
         base64.h
         service_manager.c
-        service_manager.h)
+        service_manager.h
+        metrics_service.c
+        metrics_service.h)
 
 target_link_libraries(ThreadedAdminServer PRIVATE OpenSSL::SSL OpenSSL::Crypto ${JANSSON_LIBRARIES} pthread)

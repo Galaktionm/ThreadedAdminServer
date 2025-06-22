@@ -1,7 +1,6 @@
 #ifndef REQUEST_H
 #define REQUEST_H
 
-void handle_metrics(int client_fd);
 void handle_logs_tail(int client_fd);
 void handle_admin_rebuild(int client_fd);
 

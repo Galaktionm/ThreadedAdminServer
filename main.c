@@ -1,12 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <unistd.h>
 
 #include "auth.h"
 #include "server.h"
 #include "signal.h"
+#include "service_manager.h"
 
 int main(int argc, char *argv[]) {
+
+    server_start_time = time(NULL);
 
     if (argc < 3) {
         fprintf(stderr, "Usage: %s <port> <service> [service args...]\n", argv[0]);

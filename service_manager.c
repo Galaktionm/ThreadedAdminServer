@@ -6,8 +6,11 @@
 #include <string.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <time.h>
+#include <sys/prctl.h>
 
 pid_t monitored_service_pid = -1;
+time_t server_start_time = 0;
 
 int start_monitored_service(const char *service_path, char *const service_argv[]) {
     int pipefd[2];
@@ -33,6 +36,7 @@ int start_monitored_service(const char *service_path, char *const service_argv[]
             // Not fatal, continue anyway
         }
 
+        prctl(PR_SET_PDEATHSIG, SIGTERM);
         execvp(service_path, service_argv);
 
         // If execvp returns, it failed: write errno to pipe
