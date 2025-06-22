@@ -1,0 +1,51 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+# === CLion / IntelliJ IDEA specific ignored files ===
+# IDE-specific configuration directory
+.idea/
+
+# Module files
+*.iml
+*.iws
+*.ipr
+
+# Compilation output and build directories
+cmake-build-*/
+# If you use other build systems like Make directly
+build/
+bin/
+obj/
+
+# Common object files and executables
+*.o
+*.out
+*.exe # For Windows executables
+*.dll # For Windows dynamic libraries
+*.so  # For Linux shared libraries
+*.dylib # For macOS dynamic libraries
+a.out # Default output name for C/C++ compiles
+
+# Log files
+*.log
+
+# Swap files for editors like Vim
+*.swp
+*.swo
+
+# Backup files
+*.bak
+*~
+
+# Test reports/results (if generated in root or build dir)
+test-results/
+
+# User-specific local data
+.DS_Store # macOS specific hidden file
+Thumbs.db # Windows specific hidden file
