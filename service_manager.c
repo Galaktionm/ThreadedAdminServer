@@ -87,9 +87,9 @@ int start_monitored_service(const char *service_path, char *const service_argv[]
 
           Set FD_CLOEXEC so that if execvp succeeds, pipe is closed automatically
         */
-        if (fcntl(pipefd[1], F_SETFD, FD_CLOEXEC) == -1) {
+        if (fcntl(pipefd[1], F_SETFD, FD_CLOEXEC) == -1) {   //Cloexec is important, otherwise the parent may block!!
             perror("fcntl FD_CLOEXEC failed");
-            // Not fatal, continue anyway
+            // Not fatal, continue anyway, although parent may block!!!!!!!!
         }
 
 
@@ -118,6 +118,14 @@ int start_monitored_service(const char *service_path, char *const service_argv[]
     else {
         // Parent process
         close(pipefd[1]); // Close write end, parent reads error status
+
+        /*
+        If pipes are synchronous by default, why doesn't this block indefinitely if child process
+        launches successfully?
+
+        The answer is that read won't block if all the writes are blocked (and read is empty).
+        If the child process launches, it will close it's write pipe with CLOEXEC
+         */
 
         int exec_error = 0;
         ssize_t n = read(pipefd[0], &exec_error, sizeof(exec_error));
